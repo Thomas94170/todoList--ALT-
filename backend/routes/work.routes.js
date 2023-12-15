@@ -1,0 +1,15 @@
+const express = require("express");
+const {
+  setWorks,
+  getWorks,
+  editWork,
+} = require("../controllers/work.controller");
+const router = express.Router();
+
+router.get("/", getWorks);
+
+router.post("/setUsers", setWorks);
+
+// router.patch("/:id", editWork);
+
+module.exports = router;
