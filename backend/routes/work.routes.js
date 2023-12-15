@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", getWorks);
 
-router.post("/setUsers", setWorks);
+router.post("/setWorks", setWorks);
 
 // router.patch("/:id", editWork);
 

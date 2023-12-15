@@ -9,7 +9,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors);
+app.use(cors());
 
 app.use("/user", require("./routes/user.routes"));
 app.use("/work", require("./routes/work.routes"));

@@ -1,6 +1,7 @@
 const UserModel = require("../models/user.model");
 
 module.exports.getUsers = async (req, res) => {
+  console.log("function user appelée");
   const users = await UserModel.find();
   res.status(200).json(users);
 };
