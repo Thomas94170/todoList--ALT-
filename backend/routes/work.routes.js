@@ -10,6 +10,6 @@ router.get("/", getWorks);
 
 router.post("/setWorks", setWorks);
 
-// router.patch("/:id", editWork);
+router.patch("/:id", editWork);
 
 module.exports = router;

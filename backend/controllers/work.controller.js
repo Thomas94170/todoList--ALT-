@@ -1,8 +1,8 @@
 const WorkModel = require("../models/work.model");
 
 module.exports.getWorks = async (req, res) => {
-  const users = await WorkModel.find();
-  res.status(200).json(users);
+  const works = await WorkModel.find();
+  res.status(200).json(works);
 };
 
 module.exports.setWorks = async (req, res) => {
@@ -20,4 +20,17 @@ module.exports.setWorks = async (req, res) => {
   });
   res.status(200).json(work);
   console.log(res.status);
+};
+
+module.exports.editWork = async (req, res) => {
+  const work = await WorkModel.findById(req.params.id);
+
+  if (!work) {
+    res.status(400).json({ message: "Ce costume n'existe pas" });
+  }
+
+  const updateWork = await WorkModel.findByIdAndUpdate(work, req.body, {
+    new: true,
+  });
+  res.status(200).json(updateWork);
 };
