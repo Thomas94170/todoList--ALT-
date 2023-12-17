@@ -34,8 +34,9 @@ const workSchema = mongoose.Schema({
     require: true,
   },
   created_by: {
-    type: Number,
-    require: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
 });
 

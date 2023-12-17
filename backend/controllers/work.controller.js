@@ -1,4 +1,5 @@
 const WorkModel = require("../models/work.model");
+const UserModel = require("../models/user.model");
 
 module.exports.getWorks = async (req, res) => {
   const works = await WorkModel.find();
@@ -7,6 +8,11 @@ module.exports.getWorks = async (req, res) => {
 
 module.exports.setWorks = async (req, res) => {
   console.log("setWorks");
+  const user = await UserModel.findOne({ nickname: req.body.created_by });
+
+  if (!user) {
+    return res.status(404).json({ message: "Utilisateur non trouvé" });
+  }
   const work = await WorkModel.create({
     name: req.body.name,
     description: req.body.description,
@@ -16,7 +22,7 @@ module.exports.setWorks = async (req, res) => {
     due_time: req.body.due_time,
     created_on: req.body.created_on,
     updated: req.body.updated,
-    created_by: req.body.created_by,
+    created_by: user._id,
   });
   res.status(200).json(work);
   console.log(res.status);
