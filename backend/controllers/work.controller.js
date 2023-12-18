@@ -11,7 +11,7 @@ module.exports.setWorks = async (req, res) => {
   const user = await UserModel.findOne({ nickname: req.body.created_by });
 
   if (!user) {
-    return res.status(404).json({ message: "Utilisateur non trouvé" });
+    return res.status(404).json({ message: "tâche non trouvé" });
   }
   const work = await WorkModel.create({
     name: req.body.name,
@@ -32,7 +32,7 @@ module.exports.editWork = async (req, res) => {
   const work = await WorkModel.findById(req.params.id);
 
   if (!work) {
-    res.status(400).json({ message: "Ce costume n'existe pas" });
+    res.status(400).json({ message: "Cette n'existe pas" });
   }
 
   const updateWork = await WorkModel.findByIdAndUpdate(work, req.body, {

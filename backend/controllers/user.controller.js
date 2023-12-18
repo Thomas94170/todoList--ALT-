@@ -14,9 +14,9 @@ module.exports.getUserById = async (req, res) => {
   console.log("Recherche du userId:", userId);
   const user = await UserModel.findOne({ _id: userId });
 
-  console.log("Recherche de la commande pour order:", user);
+  console.log("Recherche du user :", user);
   if (!user) {
-    return res.status(404).json({ message: "cette commande n'existe pas" });
+    return res.status(404).json({ message: "cet utilisateur n'existe pas" });
   }
   return res.status(200).json(user);
 };
