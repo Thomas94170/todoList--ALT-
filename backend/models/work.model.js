@@ -38,6 +38,13 @@ const workSchema = mongoose.Schema({
     ref: "User",
     required: true,
   },
+  assigned_for: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  ],
 });
 
 module.exports = mongoose.model("work", workSchema);

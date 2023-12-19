@@ -33,6 +33,11 @@ module.exports.setWorks = async (req, res) => {
   if (!user) {
     return res.status(404).json({ message: "tâche non trouvé" });
   }
+
+  const assignedUsers = await UserModel.find({
+    nickname: { $in: req.body.assigned_for },
+  });
+
   const work = await WorkModel.create({
     name: req.body.name,
     description: req.body.description,
@@ -43,6 +48,7 @@ module.exports.setWorks = async (req, res) => {
     created_on: req.body.created_on,
     updated: req.body.updated,
     created_by: user._id,
+    assigned_for: assignedUsers.map((user) => user._id),
   });
   res.status(200).json(work);
   console.log(res.status);
