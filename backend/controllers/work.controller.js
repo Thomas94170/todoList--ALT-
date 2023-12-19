@@ -45,22 +45,6 @@ module.exports.getWorkById = async (req, res) => {
 };
 
 module.exports.setWorks = async (req, res) => {
-  // console.log("setWorks");
-  // const work = await WorkModel.create({
-  //   name: req.body.name,
-  //   description: req.body.description,
-  //   category: req.body.category,
-  //   status: req.body.status,
-  //   priority: req.body.priority,
-  //   due_time: req.body.due_time,
-  //   created_on: req.body.created_on,
-  //   updated: req.body.updated,
-  //   created_by: user._id,
-  //   assigned_for: assignedUsers.map((user) => user._id),
-  // });
-  // res.status(200).json(work);
-  // console.log(res.status);
-
   try {
     const user = await UserModel.findOne({ nickname: req.body.created_by });
 
@@ -85,7 +69,8 @@ module.exports.setWorks = async (req, res) => {
       assigned_for: assignedUsers.map((user) => user._id),
     });
 
-    // Envoi d'e-mails aux utilisateurs assignés
+    // j'envoi le mail aux users concerné
+    console.log(process.env.USEREMAIL, process.env.USERPASSWORD);
     const transporter = nodeMailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -95,11 +80,10 @@ module.exports.setWorks = async (req, res) => {
         pass: process.env.USERPASSWORD,
       },
     });
-
     assignedUsers.forEach(async (assignedUser) => {
       const mailOptions = {
         from: process.env.USEREMAIL,
-        to: assignedUser.email, // Utilisez le champ approprié pour l'adresse e-mail dans votre modèle d'utilisateur
+        to: assignedUser.email,
         subject: `Nouvelle tâche assignée: ${work.name}`,
         text: `Une nouvelle tâche vous a été assignée : ${work.description}`,
       };
