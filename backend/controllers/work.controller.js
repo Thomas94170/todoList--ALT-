@@ -4,15 +4,17 @@ const mongoose = require("mongoose");
 
 module.exports.getWorks = async (req, res) => {
   const works = await WorkModel.find();
+  console.log(works);
   res.status(200).json(works);
 };
 
 module.exports.getWorkById = async (req, res) => {
+  console.log("function getWorkById lancée");
   const workId = new mongoose.Types.ObjectId(req.params.id);
-
+  console.log(workId);
   try {
     const work = await WorkModel.findOne({ _id: workId });
-
+    console.log(work);
     if (!work) {
       return res.status(404).json({ message: "Tâche non trouvée" });
     }
