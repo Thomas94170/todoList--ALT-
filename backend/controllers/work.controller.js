@@ -7,16 +7,36 @@ const dotenv = require("dotenv").config();
 /**
  * @swagger
  *
- *   getWorks:
- *     summary: Récupérer toute les tâches
- *     description: Utilisation de la méthode find()
- *     responses: tout les utilisateurs sont trouvés
- *
- *  getWorkById:
- *     summary: Récupérer toute les tâches selon leurs ID
- *     description: Utilisation de la méthode findOne(), l'_id étant un object de mongoose,
- *                  il faut utiliser la méthode new mongoose.Types.ObjectId
- *     responses: tout les utilisateurs sont trouvés
+ /works:
+ *   get:
+ *     summary: Récupérer toutes les tâches
+ *     description: Utilisation de la méthode find() pour récupérer toutes les tâches.
+ *     responses:
+ *       200:
+ *         description: Toutes les tâches ont été récupérées avec succès.
+ *         content:
+ *           application/json:
+ *             example:
+ *               - name: Tâche 1
+ *                 description: Description de la tâche 1
+ *                 category: Catégorie 1
+ *                 status: À faire
+ *                 priority: Haute
+ *                 due_time: '2023-12-31'
+ *                 created_on: '2023-01-01'
+ *                 updated: '2023-01-01'
+ *                 created_by: utilisateur_id
+ *                 assigned_for: [utilisateur_id_1, utilisateur_id_2]
+ *               - name: Tâche 2
+ *                 description: Description de la tâche 2
+ *                 category: Catégorie 2
+ *                 status: En cours
+ *                 priority: Moyenne
+ *                 due_time: '2023-12-31'
+ *                 created_on: '2023-01-01'
+ *                 updated: '2023-01-01'
+ *                 created_by: utilisateur_id
+ *                 assigned_for: [utilisateur_id_1, utilisateur_id_3]
  *
  */
 

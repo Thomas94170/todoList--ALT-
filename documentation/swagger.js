@@ -10,7 +10,7 @@ const options = {
       description: "Back end en Node.js, database réalisée avec mongoDB",
     },
   },
-  apis: ["./routes/*.js"], // Chemin vers vos fichiers de routes
+  apis: ["../routes/*.js"], // Chemin vers vos fichiers de routes
 };
 
 const specs = swaggerJsdoc(options);

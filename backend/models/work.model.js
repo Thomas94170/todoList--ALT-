@@ -15,10 +15,14 @@ const workSchema = mongoose.Schema({
   },
   status: {
     type: String,
+    enum: ["Waiting", "In progress", "To be tested", "Finished"],
+    default: "Waiting",
     require: true,
   },
   priority: {
     type: String,
+    enum: ["Low", "Medium", "High"],
+    default: "Medium",
     require: true,
   },
   due_time: {
@@ -48,3 +52,5 @@ const workSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("work", workSchema);
+
+// corriger les tables, les champs categories, status et priorité doivent etre des enum
